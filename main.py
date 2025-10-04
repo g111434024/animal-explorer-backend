@@ -11,9 +11,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # 初始化 Supabase 客戶端
-supabase_url = os.getenv("SUPABASE_URL", "https://your-project-id.supabase.co")
-supabase_key = os.getenv("SUPABASE_ANON_KEY", "your-anon-key-here")
-supabase: Client = create_client(supabase_url, supabase_key)
+supabase_url = os.getenv("SUPABASE_URL", "https://rlkubwdazhrldybsuwcl.supabase.co")
+supabase_key = os.getenv("SUPABASE_ANON_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsa3Vid2RhemhybGR5YnN1d2NsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk1OTg1MTEsImV4cCI6MjA3NTE3NDUxMX0.TcNP5Scu0fkE1ns1RwCd3DW1dDn-SxrbAvOfXS7XHtg")
+
+# 檢查環境變數
+print(f"Supabase URL: {supabase_url}")
+print(f"Supabase Key: {supabase_key[:20]}...")
+
+try:
+    supabase: Client = create_client(supabase_url, supabase_key)
+    print("Supabase client created successfully")
+except Exception as e:
+    print(f"Error creating Supabase client: {e}")
+    raise
 
 app = FastAPI(
     title="Animal Explorer API",
